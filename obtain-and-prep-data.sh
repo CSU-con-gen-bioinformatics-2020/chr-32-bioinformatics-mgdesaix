@@ -26,7 +26,7 @@ rclone copy --tpslimit 10 --fast-list -P --drive-shared-with-me ConGen:CSU-con-g
 #  https://drive.google.com/drive/folders/11fLG7b0RV1Uij9CbYh_jt_Xp_dyfLetO?usp=sharing
 # inside the directory fastqs-chr32-160-chinook-8-lanes.  Use rclone to get this
 # to scratch on your cluster.  Since there are so many files before sure to
-# use the --tps-limit 19 and --fast-list options.
+# use the --tps-limit 10 and --fast-list options.
 
 # Here is how I did it:
 rclone copy --tpslimit 10 --fast-list -P --drive-shared-with-me ConGen:CSU-con-gen-2020/fastqs-chr32-160-chinook-8-lanes  fastqs-chr32-160-chinook-8-lanes
@@ -48,7 +48,7 @@ ln -s /home/mgdesaix@colostate.edu/scratch/chinook-play/chinook-genome-idx genom
 # all the gzipped FASTQ files into a directory named "fastqs" in this repository directory.
 
 # Here is what I did (making a symbolic link)
-ln -s  /home/mgdesaix@colostate.edu/scratch/chr-32-bioinformatics-mgdesaix/fastqs-chr32-160-chinook-8-lanes fastqs
+ln -s  /home/mgdesaix@colostate.edu/scratch/fastqs-chr32-160-chinook-8-lanes fastqs
 
 # You will have to modify this to reflect the proper location of the
 # directory on your system.
