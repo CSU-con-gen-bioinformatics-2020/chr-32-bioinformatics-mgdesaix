@@ -9,6 +9,8 @@
 
 # Check to make sure there are two appropriate positional parameters,
 # and print some usage information
+
+# Checks if # parameters not equal to 2, then displays
 if [ $# -ne 2 ]; then
   echo "Wrong number of parameters"
   echo "Syntax "
@@ -24,27 +26,29 @@ if [ $# -ne 2 ]; then
 would align file pairs starting at 65 and going up to 96
 
 NOTE: you should choose N and K so that all the FASTQ files from each
-sample involved are processed. This means doing things in mutliples
+sample involved are processed. This means doing things in multiples
 of eight, basically.
     "
     
-    exit 1;
+    exit 1; # exits with general error
 fi
 
 
-# set up your bioinf conda environemnt
+## set up your bioinf conda environemnt
 source ~/.bashrc
 conda activate bioinf
 
 
 # Now, get the first file index and the last file index
 START=$2
-STOP=$(($START + $1 - 1))
+STOP=$(($START + $1 - 1)) # basic math
 
 # get the names of the all the different samples (SM tags) that
 # are being processed here.  This is necessary, because we end up 
 # having to merge all the lane-specific bams into a single bam for
 # each sample in order to mark duplicates in it, etc.
+
+## Note: -v specifies variable assignment
 SM_TAGS=$(awk -v low=$START -v high=$STOP '$1 >= low && $1 <= high {print $5}' chinook-fastq-meta-data.tsv | uniq)
 
 # loop over those file indexes and do the alignment steps on all of them.
@@ -58,6 +62,8 @@ for((Idx=$START; Idx<=$STOP; Idx++)); do
   # This awk script extracts the appropriate line from the chinook-fastq-meta-data.tsv
   # file and makes a command line that sets shell variables named after the column
   # headers in the file to their appropriate values:
+  
+  ## Note: check out how conditionals work in awk to better understand this
   ASSIGNMENTS=$(awk -v LINE=$Idx '
     $1 == "index" {for(i=1; i<=NF; i++) vars[i]=$i; next}
     $1 == LINE {for(i=1; i<=NF; i++) printf("%s=%s; ", vars[i], $i)}
