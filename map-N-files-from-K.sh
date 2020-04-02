@@ -80,7 +80,8 @@ for((Idx=$START; Idx<=$STOP; Idx++)); do
   # Define variables for file names
   READ2=fastqs/${file_prefix}2.fq.gz
   READ1=fastqs/${file_prefix}1.fq.gz
-  GENOME=genome/GCA_002872995.1_Otsh_v1.0_genomic.fna.gz # Note: make sure to use indexed genome! I wasn't and this kept completing without error but no results
+  GENOME=genome/GCA_002872995.1_Otsh_v1.0_genomic.fna.gz # Note: make sure to use indexed genome! 
+  #I wasn't using the indexed genome and this kept completing without error but no results
   FIXEDMATES=bam/${file_prefix}_FIXED.bam
   SORTED=bam/${file_prefix}_SORTED.bam
   BWA_STDERR=stderr/bwa_stderr_$file_prefix
