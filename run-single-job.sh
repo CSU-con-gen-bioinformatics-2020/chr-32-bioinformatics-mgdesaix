@@ -7,5 +7,5 @@
 #SBATCH --mail-user=mgdesaix@gmail.com
 
 
-./map-N-files-from-K.sh 128 1
+./map-N-files-from-K.sh 1280 1
 
